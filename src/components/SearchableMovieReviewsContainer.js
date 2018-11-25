@@ -3,8 +3,8 @@ import 'isomorphic-fetch';
 import MovieReviews from './MovieReviews'
 
 const NYT_API_KEY = 'f98593a095b44546bf4073744b540da0';
-const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/all.json?'
-            + `api-key=${NYT_API_KEY}`;
+const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?'
+            + `api-key=${NYT_API_KEY}&query=`;
 
 // Code SearchableMovieReviewsContainer Here
 class SearchableMovieReviewsContainer extends Component {
@@ -16,16 +16,6 @@ class SearchableMovieReviewsContainer extends Component {
         } 
     }
 
-    componentDidMount() {
-        fetch(`${URL}?query=${this.state.searchTerm}`)
-            .then(resp => {
-                if (resp.status >= 400) {
-                    throw new Error('Bad response from server')
-                }
-                return resp.json();
-            })
-            .then(review => this.setState({ reviews: reviews.results }))
-    }
 
     handleChange = event => {
         this.setState({
@@ -36,12 +26,15 @@ class SearchableMovieReviewsContainer extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
+        fetch(`${URL}${this.state.searchTerm}`)
+            .then(resp => resp.json())
+            .then(resp => this.setState({ reviews: resp.results }))
     }
 
-    render() {
+    render () {
         return (
             <div className='searchable-movie-reviews'>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input 
                         type='text' 
                         name='search-term' 
@@ -49,8 +42,9 @@ class SearchableMovieReviewsContainer extends Component {
                         value={this.state.searchTerm}
                         onChange={this.handleChange}>
                     </input>
-                    <input type='submit' value='Search' onSubmit={e => this.handleSubmit(e)}></input>
+                    <input type='submit' value='Search'></input>
                 </form>
+                < MovieReviews reviews={ this.state.reviews } />
             </div>
         )
     }
