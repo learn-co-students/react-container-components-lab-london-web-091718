@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'isomorphic-fetch';
 import MovieReviews from './MovieReviews'
+import { Grid } from 'semantic-ui-react'
 
 
 const NYT_API_KEY = 'f98593a095b44546bf4073744b540da0';
@@ -40,8 +41,9 @@ class LatestMovieReviewsContainer extends Component {
     render() { 
         return ( 
             <div className="latest-movie-reviews">
-
-                {this.state.reviews? this.mapReviews() : <p>no reviews</p>}
+                <Grid columns={2} centered>
+                    {this.state.reviews? this.mapReviews() : <p>no reviews</p>}
+                </Grid>
             </div>
          )
     }
