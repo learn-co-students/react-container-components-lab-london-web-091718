@@ -5,7 +5,7 @@ const MovieReviews = (props) => {
     return ( 
         
     <div classNAme="review-list">
-        <Grid.Column> 
+        <Grid.Column width={2}>
             <Card>
                 <Card.Content>
                     <Card.Header>{props.result.byline}</Card.Header>
@@ -13,7 +13,7 @@ const MovieReviews = (props) => {
                     <Card.Description>{props.result.summary_short}.</Card.Description>
                 </Card.Content>
             </Card>
-        </Grid.Column> 
+        </Grid.Column>
     </div>
   
         

@@ -41,8 +41,10 @@ class LatestMovieReviewsContainer extends Component {
     render() { 
         return ( 
             <div className="latest-movie-reviews">
-                <Grid columns={2} centered>
+                <Grid columns={3} divided centered>
+
                     {this.state.reviews? this.mapReviews() : <p>no reviews</p>}
+
                 </Grid>
             </div>
          )
