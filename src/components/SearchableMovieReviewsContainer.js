@@ -7,3 +7,21 @@ const URL = 'https://api.nytimes.com/svc/movies/v2/reviews/all.json?'
             + `api-key=${NYT_API_KEY}`;
 
 // Code SearchableMovieReviewsContainer Here
+
+class SearchableMovieReviewsContainer extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {  }
+    }
+
+
+    render() { 
+        return ( 
+        <div>
+            
+        </div>
+         )
+    }
+}
+ 
+export default SearchableMovieReviewsContainer;
